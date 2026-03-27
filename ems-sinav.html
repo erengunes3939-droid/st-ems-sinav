@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST Fire & EMS | Yetkinlik Portalı</title>
+    <style>
+        :root { --main-red: #e74c3c; --bg-dark: #121212; --card-bg: #1e1e1e; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: #e0e0e0; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; user-select: none; -webkit-user-select: none; }
+        .container { background: var(--card-bg); width: 450px; padding: 40px; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border: 1px solid #333; position: relative; }
+        .page { display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        h1 { color: var(--main-red); margin-bottom: 20px; font-size: 24px; }
+        .btn { background: var(--main-red); color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 18px; transition: 0.3s; width: 100%; margin-top: 20px; }
+        .btn:hover { background: #c0392b; transform: scale(1.02); }
+        .question-box { text-align: left; margin-top: 20px; }
+        .q-text { font-size: 15px; margin-bottom: 10px; display: block; color: #bbb; }
+        select, input[type="text"] { width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white; margin-bottom: 15px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .locked { font-size: 18px; color: #f1c40f; line-height: 1.6; }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <div class="container">
+    <div class="page active" id="page0">
+        <h1>Sınava Hazır mısın? 🚑</h1>
+        <p>ST Fire & EMS Resmi Sağlık Tarama Protokolü</p>
+        <button class="btn" onclick="nextPage(1)">BAŞLA</button>
+    </div>
+
+    <div class="page" id="page1">
+        <h1>1. Bölüm: Psikiyatri</h1>
+        <div class="question-box">
+            <label class="q-text">Yoğun stres altında halüsinasyon veya dissosiyatif belirtiler yaşadınız mı?</label>
+            <select><option>Hayır, asla</option><option>Nadir durumlarda</option><option>Bazen kontrol edemiyorum</option></select>
+            
+            <label class="q-text">Mesleki deformasyon sonucu empati kaybı yaşıyor musunuz?</label>
+            <select><option>Hayır</option><option>Kısmen</option><option>Meslek bunu gerektirir</option></select>
+        </div>
+        <button class="btn" onclick="nextPage(2)">BİTTİ (2/4)</button>
+    </div>
+
+    <div class="page" id="page2">
+        <h1>2. Bölüm: Psikoloji</h1>
+        <div class="question-box">
+            <label class="q-text">Bir çocuk ve bir yaşlı arasında tek bir tıbbi kitiniz varsa seçiminizi neye göre yaparsınız?</label>
+            <select><option>Tıbbi hayatta kalma şansına göre (Triyaj)</option><option>Çocuk önceliklidir</option><option>Yaşlı önceliklidir</option></select>
+            
+            <label class="q-text">Ekip arkadaşınızın yanlış bir müdahale yaptığını gördüğünüzde tepkiniz ne olur?</label>
+            <input type="text" placeholder="Kısaca açıklayın..." autocomplete="off">
+        </div>
+        <button class="btn" onclick="nextPage(3)">BİTTİ (3/4)</button>
+    </div>
+
+    <div class="page" id="page3">
+        <h1>3. Bölüm: Sağlık Geçmişi</h1>
+        <div class="question-box">
+            <label class="q-text">Kronik bir rahatsızlığınız (Astım, Epilepsi, Kalp vb.) var mı?</label>
+            <input type="text" placeholder="Varsa detay belirtin..." autocomplete="off">
+            
+            <label class="q-text">Düzenli kullandığınız bir ilaç veya kırmızı reçeteli bir madde var mı?</label>
+            <select><option>Hayır</option><option>Evet (Belirtilecek)</option></select>
+        </div>
+        <button class="btn" onclick="nextPage(4)">BİTTİ (4/4)</button>
+    </div>
+
+    <div class="page" id="page4">
+        <h1>4. Bölüm: Vaka Yönetimi</h1>
+        <div class="question-box">
+            <label class="q-text">Açık pnömotoraks (göğüs yaralanması) durumunda "üç tarafı kapalı pansuman" neden yapılır?</label>
+            <select>
+                <option>Enfeksiyonu engellemek için</option>
+                <option>İçerdeki havayı tahliye edip dışarıdan hava girişini kesmek için</option>
+                <option>Kanamanın pıhtılaşmasını hızlandırmak için</option>
+            </select>
+            
+            <label class="q-text">Taşikardi ve bradikardi arasındaki farkı tek kelimeyle nasıl açıklarsınız?</label>
+            <input type="text" placeholder="..." autocomplete="off">
+        </div>
+        <button class="btn" onclick="finish()">SINAVI TAMAMLA</button>
+    </div>
+
+    <div class="page" id="finalPage">
+        <h1>Sistem Kilitlendi 🔒</h1>
+        <div class="locked">
+            Verileriniz ST Fire & EMS veri tabanına şifreli olarak iletildi. <br><br>
+            <strong>1 saat içinde test sonuçlarınız Discord üzerinden tarafınıza bildirilecektir.</strong><br><br>
+            Tarayıcıyı kapatabilirsiniz.
+        </div>
+    </div>
+</div>
+
+<script>
+    function nextPage(pageNum) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page' + pageNum).classList.add('active');
+    }
+
+    function finish() {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('finalPage').classList.add('active');
+        // Sayfadan çıkışı zorlaştırmak için
+        window.onbeforeunload = function() { return "Sınavınız gönderiliyor, ayrılmak istediğinize emin misiniz?"; };
+    }
+
+    // CTRL+U, CTRL+S, F12 Engelleme
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83 || e.keyCode == 73))) {
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
